@@ -6,6 +6,10 @@ public class RollCube : MonoBehaviour
     public int speed = 300;
     bool isMoving = false;
 
+    [Space]
+    public LayerMask collisionLayer;
+    public float raycastRange;
+
     void Update()
     {
         if (isMoving)
@@ -15,20 +19,31 @@ public class RollCube : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            StartCoroutine(Roll(Vector3.right));
+            if (CanRollInDirection(Vector3.right))
+                StartCoroutine(Roll(Vector3.right));
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            StartCoroutine(Roll(Vector3.left));
+            if (CanRollInDirection(Vector3.left))
+                StartCoroutine(Roll(Vector3.left));
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            StartCoroutine(Roll(Vector3.forward));
+            if (CanRollInDirection(Vector3.forward))
+                StartCoroutine(Roll(Vector3.forward));
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            StartCoroutine(Roll(Vector3.back));
+            if(CanRollInDirection(Vector3.back))
+                StartCoroutine(Roll(Vector3.back));
         }
+    }
+    private void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position, Vector3.forward * raycastRange, Color.yellow); 
+        Debug.DrawRay(transform.position, Vector3.back * raycastRange, Color.red);
+        Debug.DrawRay(transform.position, Vector3.left * raycastRange, Color.blue);
+        Debug.DrawRay(transform.position, Vector3.right * raycastRange, Color.green);
     }
 
     IEnumerator Roll(Vector3 direction)
@@ -48,5 +63,27 @@ public class RollCube : MonoBehaviour
         }
 
         isMoving = false;
+        RoundCubePosition();
+        
     }
+
+    void RoundCubePosition()
+    {
+        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
+    }
+
+    bool CanRollInDirection(Vector3 direction)
+    {       
+        if (Physics.Raycast(transform.position, direction, raycastRange, collisionLayer))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    
+
 }
