@@ -12,6 +12,8 @@ public class Collectable : MonoBehaviour
         greenGem,
         blueGem,
         purpleGem,
+        cyanGem,
+        yellowGem
     }
     public collectableType druh;
     private void OnTriggerEnter(Collider other)
