@@ -37,6 +37,7 @@ public class RollCube : MonoBehaviour
             if(CanRollInDirection(Vector3.back))
                 StartCoroutine(Roll(Vector3.back));
         }
+
     }
     private void FixedUpdate()
     {

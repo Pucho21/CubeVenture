@@ -20,7 +20,19 @@ public class Collectable : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Collected " + druh);
+         if(druh == collectableType.coin)
+            {
+                GameManager.instance.CoinCollected();
+            }
+         else if(druh == collectableType.star)
+            {
+                GameManager.instance.StarCollected();
+            }
+         else
+            {
+                other.gameObject.GetComponent<CubeColors>().EnableColorSide(druh);
+                InGameUIPanel.instance.EnableGemImg(druh);
+            }           
             Destroy(gameObject);
         }
     }

@@ -66,9 +66,17 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Collectable.cs" />
     <Compile Include="Assets\Scripts\CollectableSpawner.cs" />
+    <Compile Include="Assets\Scripts\CubeColors.cs" />
     <Compile Include="Assets\Scripts\DoorButton.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\RollCube.cs" />
+    <Compile Include="Assets\Scripts\Sound.cs" />
+    <Compile Include="Assets\Scripts\UI\InGameUIPanel.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <None Include="Assets\Shaders\Fog.shader" />
     <Reference Include="UnityEngine">
@@ -615,37 +623,40 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/ivanv/Desktop/Cubeventure/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
