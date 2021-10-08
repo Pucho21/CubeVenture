@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
     public void Scene1()
     {
         Debug.Log("Prepinam na scenu hry");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level1");
     }
 
     // Update is called once per frame

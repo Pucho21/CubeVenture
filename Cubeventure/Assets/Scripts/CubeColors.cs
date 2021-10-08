@@ -20,27 +20,33 @@ public class CubeColors : MonoBehaviour
     {
         if(gemType == Collectable.collectableType.redGem)
         {
-            redCubeSide.SetActive(true);
+            redCubeSide.GetComponent<BoxCollider>().enabled = true;
+            redCubeSide.GetComponent<MeshRenderer>().material.color = Color.red;
         }
         else if (gemType == Collectable.collectableType.greenGem)
         {
-            greenCubeSide.SetActive(true);
+            greenCubeSide.GetComponent<BoxCollider>().enabled = true;
+            greenCubeSide.GetComponent<MeshRenderer>().material.color = Color.green;
         }
         else if (gemType == Collectable.collectableType.blueGem)
         {
-            blueCubeSide.SetActive(true);
+            blueCubeSide.GetComponent<BoxCollider>().enabled = true;
+            blueCubeSide.GetComponent<MeshRenderer>().material.color = Color.blue;
         }
         else if (gemType == Collectable.collectableType.cyanGem)
         {
-            cyanCubeSide.SetActive(true);
+            cyanCubeSide.GetComponent<BoxCollider>().enabled = true;
+            cyanCubeSide.GetComponent<MeshRenderer>().material.color = Color.cyan;
         }
         else if (gemType == Collectable.collectableType.purpleGem)
         {
-            magentaCubeSide.SetActive(true);
+            magentaCubeSide.GetComponent<BoxCollider>().enabled = true;
+            magentaCubeSide.GetComponent<MeshRenderer>().material.color = Color.magenta;
         }
         else if (gemType == Collectable.collectableType.yellowGem)
         {
-            yellowCubeSide.SetActive(true);
+            yellowCubeSide.GetComponent<BoxCollider>().enabled = true;
+            yellowCubeSide.GetComponent<MeshRenderer>().material.color = Color.yellow;
         }
     }
 }

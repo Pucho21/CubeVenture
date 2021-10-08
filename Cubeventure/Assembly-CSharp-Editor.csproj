@@ -659,6 +659,9 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
@@ -667,9 +670,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/ivanv/Desktop/Team_project/Cubeventure/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
