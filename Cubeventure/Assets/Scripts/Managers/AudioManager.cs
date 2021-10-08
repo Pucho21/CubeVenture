@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-
+        Play("music_1");
     }
 
     public void Play(string name)

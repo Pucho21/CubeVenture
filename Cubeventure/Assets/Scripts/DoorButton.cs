@@ -68,14 +68,14 @@ public class DoorButton : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag);
-        if(other.CompareTag(doorColor.ToString())) // ak slapne hrac
+        if(other.CompareTag(doorColor.ToString())) // ak tag strany je rovnaky ako buttonu
         {
             OpenDoor();
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag(doorColor.ToString())) // ak slapne hrac
+        if (other.CompareTag(doorColor.ToString())) // ak tag strany je rovnaky ako buttonu
         {
             if(isDoorTimed)
                 timeLeft = openTime;
@@ -90,6 +90,7 @@ public class DoorButton : MonoBehaviour
             enabled = true;
             
         }
+        AudioManager.instance.Play("click");
         doorGO.transform.GetChild(0).GetComponent<Animator>().Play("OpenDoor");
     }
 

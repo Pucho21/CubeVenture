@@ -69,15 +69,19 @@
     <Compile Include="Assets\Scripts\CubeColors.cs" />
     <Compile Include="Assets\Scripts\DoorButton.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\LoginScript.cs" />
+    <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\RegisterScript.cs" />
     <Compile Include="Assets\Scripts\RollCube.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\UI\InGameUIPanel.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
+    <Compile Include="Assets\Scripts\Web.cs" />
     <None Include="Assets\Shaders\Fog.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   druh: 0
+  collectParticle: {fileID: 1408757232103392, guid: 24394c1b6f0b6de48ba7ea8e50ab48b8,
+    type: 3}
 --- !u!65 &1002418941043594630
 BoxCollider:
   m_ObjectHideFlags: 0

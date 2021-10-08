@@ -39,6 +39,7 @@ public class RollCube : MonoBehaviour
         }
 
     }
+    /*
     private void FixedUpdate()
     {
         Debug.DrawRay(transform.position, Vector3.forward * raycastRange, Color.yellow); 
@@ -46,6 +47,8 @@ public class RollCube : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.left * raycastRange, Color.blue);
         Debug.DrawRay(transform.position, Vector3.right * raycastRange, Color.green);
     }
+    */
+
 
     IEnumerator Roll(Vector3 direction)
     {
@@ -63,8 +66,8 @@ public class RollCube : MonoBehaviour
             yield return null;
         }
 
-        isMoving = false;
         RoundCubePosition();
+        isMoving = false;
         
     }
 
