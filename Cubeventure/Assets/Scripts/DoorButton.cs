@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DoorButton : MonoBehaviour
 {
-    
     public GameObject doorGO;
+    public GameObject player;
     public enum ColorType 
     {     
         Red,
@@ -96,7 +96,10 @@ public class DoorButton : MonoBehaviour
 
     void CloseDoor()
     {
-        enabled = false;
-        doorGO.transform.GetChild(0).GetComponent<Animator>().Play("CloseDoor");
+        //Pridana podmienka na kontrolu ci player nestoji na dverach/brane
+        if (doorGO.transform.TransformPoint(Vector3.zero) != player.transform.TransformPoint(Vector3.zero)) {
+            enabled = false;
+            doorGO.transform.GetChild(0).GetComponent<Animator>().Play("CloseDoor");
+        }
     }
 }

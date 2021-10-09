@@ -28,6 +28,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (LoginHandler.instance.IsUserLoggedIn())
+        {
+            MainMenu();
+        }
+    }
+
     public void clearScreen()
     {
         loginUI.SetActive(false);

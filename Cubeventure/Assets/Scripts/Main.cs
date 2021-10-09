@@ -8,16 +8,21 @@ public class Main : MonoBehaviour
     public Web Web;
     public static Main Instance;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if(Instance == null) {
         Instance = this;
-        Web = GetComponent<Web>();
+        Web = GetComponent<Web>(); 
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

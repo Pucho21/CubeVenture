@@ -48,10 +48,12 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void GoToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
         //SceneManager.LoadScene("MainMenu");
     }

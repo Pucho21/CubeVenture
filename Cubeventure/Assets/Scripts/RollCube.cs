@@ -10,6 +10,8 @@ public class RollCube : MonoBehaviour
     public LayerMask collisionLayer;
     public float raycastRange;
 
+    private Animator hatAnimator;
+
     void Update()
     {
         if (isMoving)
@@ -54,8 +56,10 @@ public class RollCube : MonoBehaviour
     {
         isMoving = true;
 
+        AnimateHat();
+
         float remainingAngle = 90;
-        Vector3 rotationCenter = transform.position + direction / 2*2 + Vector3.down / 2*2;
+        Vector3 rotationCenter = transform.position + direction + Vector3.down;
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, direction);
 
         while (remainingAngle > 0)
@@ -86,6 +90,17 @@ public class RollCube : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public void SetHatAnimator(Animator hatAnimator)
+    {
+        this.hatAnimator = hatAnimator;
+    }
+
+    void AnimateHat()
+    {
+        Debug.Log("Pustam animaciu hatky");
+        hatAnimator.Play("HatJump");
     }
 
     

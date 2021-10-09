@@ -3,17 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Web : MonoBehaviour
 {
     public Text resultTextLogin;
+    EventSystem system;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(getUsers());
-        //StartCoroutine(Login("NvN", "morecko"));
-        //StartCoroutine(Register("tester", "tester", "tester@gmail.com"));
+        system = EventSystem.current;
 
+    }
+
+    public void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+
+            if (next != null)
+            {
+
+                InputField inputfield = next.GetComponent<InputField>();
+                if (inputfield != null) inputfield.OnPointerClick(new PointerEventData(system));  //if it's an input field, also set the text caret
+
+                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            }
+            //else Debug.Log("next nagivation element not found");
+
+        }
     }
 
     public IEnumerator getUsers()
@@ -37,7 +59,7 @@ public class Web : MonoBehaviour
         }
     }
 
-    public IEnumerator Login(string username, string password)
+    public IEnumerator Login(string username, string password)// -1 = user neexistuje, 0 = zle udaje, 1 = success
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
@@ -55,8 +77,25 @@ public class Web : MonoBehaviour
             else
             {
                 //Show results as text
-                resultTextLogin.text = www.downloadHandler.text;
                 Debug.Log(www.downloadHandler.text);
+                if(www.downloadHandler.text.Equals("1"))// -1 = user neexistuje, 0 = zle udaje, 1 = success
+                {
+                    resultTextLogin.text = "Login successful";
+                    yield return new WaitForSeconds(2);
+                    UIManager.instance.introScreen();
+
+                } else if (www.downloadHandler.text.Equals("0"))// -1 = user neexistuje, 0 = zle udaje, 1 = success
+                {
+                    resultTextLogin.text = "Wrong creditals";
+                    //ficurka keby nieco, prehodit alebo tak
+
+                }
+                else // -1 = user neexistuje, 0 = zle udaje, 1 = success
+                {
+                    resultTextLogin.text = "Username does not exist";
+                    //neexistuje pouzivatel
+
+                }
 
             }
         }
