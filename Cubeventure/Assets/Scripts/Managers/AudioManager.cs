@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public Sound[] sounds;
+    public bool isMusicEnabled;
+    public bool isSoundEnabled;
 
     [HideInInspector] public string musidId;
 
@@ -30,10 +32,10 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        Play("music_1");
+        ChangeMusicVolume("music_1");
     }
 
-    public void Play(string name)
+    public void PlaySound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -42,10 +44,14 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-            if(SoundManager.IsSoundActive())  s.source.Play(); // ak mam zapnute zvuky
+        if (isSoundEnabled)
+        {
+            s.source.Play();
+        }
+        
     }
 
-    public void UpdateMusicVolume(string name) // vyp music -> volume 0 <<>> zap music -> volume 0.1
+    public void ChangeMusicVolume(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -54,8 +60,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (SoundManager.IsMusicActive()) s.source.volume =s.volume; // ak mam zapnute zvuky
-        else s.source.volume = 0f;
+        if (isMusicEnabled)
+        {
+            s.source.volume = 0.01f;
+        }
+        else s.source.volume = 0;
+
+        s.source.Play();
+        Debug.Log("hram");
+
     }
 
 

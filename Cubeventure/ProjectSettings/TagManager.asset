@@ -11,6 +11,8 @@ TagManager:
   - Yellow
   - Purple
   - Cyan
+  - Mirror
+  - LaserEnd
   layers:
   - Default
   - TransparentFX

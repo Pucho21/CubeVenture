@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject loginUserUI;
     public GameObject registerUserUI;
+    public GameObject shopUI;
+    public GameObject settingsUI;
+    public GameObject scoreboardUI;
     //public GameObject userDataUI;
 
     private void Awake()
@@ -30,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        if (LoginHandler.instance.IsUserLoggedIn())
+        if (UserInfoHolder.instance.IsUserLoggedIn())
         {
             MainMenu();
         }
@@ -43,6 +46,9 @@ public class UIManager : MonoBehaviour
         mainMenuUI.SetActive(false);
         introUI.SetActive(false);
         loginUserUI.SetActive(false);
+        shopUI.SetActive(false);
+        settingsUI.SetActive(false);
+        scoreboardUI.SetActive(false);
         //userDataUI.SetActive(false);
 
     }
@@ -53,6 +59,25 @@ public class UIManager : MonoBehaviour
         clearScreen();
         loginUI.SetActive(true);
     }
+
+    public void SettingsScreen()
+    {
+        clearScreen();
+        settingsUI.SetActive(true);
+    }
+
+    public void ScoreboardScreen()
+    {
+        clearScreen();
+        scoreboardUI.SetActive(true);
+    }
+
+    public void ShopScreen()
+    {
+        clearScreen();
+        shopUI.SetActive(true);
+    }
+
     public void RegisterUserScreen() // Register button
     {
         clearScreen();
