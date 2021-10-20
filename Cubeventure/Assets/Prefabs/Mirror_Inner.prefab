@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 68808281772443510}
   - component: {fileID: 2719226298628314877}
   - component: {fileID: 8123426247039565058}
-  m_Layer: 0
+  - component: {fileID: 7518728112275963313}
+  m_Layer: 10
   m_Name: Mirror_Inner
   m_TagString: Mirror
   m_Icon: {fileID: 0}
@@ -94,3 +95,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 12178041199310296, guid: 682ec547ca421f742a3baf4b415f6e6b, type: 3}
+--- !u!114 &7518728112275963313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8123426247039565059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc4ea6c4f7785d4c87f75c895780b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 300
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 1536
+  raycastRange: 2

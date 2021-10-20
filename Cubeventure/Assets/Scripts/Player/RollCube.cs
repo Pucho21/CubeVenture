@@ -41,15 +41,16 @@ public class RollCube : MonoBehaviour
         }
 
     }
-    /*
+    
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, Vector3.forward * raycastRange, Color.yellow); 
-        Debug.DrawRay(transform.position, Vector3.back * raycastRange, Color.red);
-        Debug.DrawRay(transform.position, Vector3.left * raycastRange, Color.blue);
-        Debug.DrawRay(transform.position, Vector3.right * raycastRange, Color.green);
+        Vector3 raycastPos = new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z);
+        Debug.DrawRay(raycastPos, Vector3.forward * raycastRange, Color.yellow); 
+        Debug.DrawRay(raycastPos, Vector3.back * raycastRange, Color.red);
+        Debug.DrawRay(raycastPos, Vector3.left * raycastRange, Color.blue);
+        Debug.DrawRay(raycastPos, Vector3.right * raycastRange, Color.green);
     }
-    */
+    
 
 
     IEnumerator Roll(Vector3 direction)
@@ -78,13 +79,21 @@ public class RollCube : MonoBehaviour
     void RoundCubePosition()
     {
         transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
-    }
-
+    } 
     bool CanRollInDirection(Vector3 direction)
-    {       
-        if (Physics.Raycast(transform.position, direction, raycastRange, collisionLayer))
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position,.5f,direction, out hit, raycastRange, collisionLayer))
         {
-            return false;
+            if (hit.transform.gameObject.layer == 10) // ak hitnem movable
+            {
+                return (hit.transform.gameObject.GetComponent<MovableObject>().SlideInDirection(direction));
+            }
+            else  // inak ak hitnem prekazku
+            {
+                return false;
+
+            }
         }
         else
         {
@@ -95,16 +104,17 @@ public class RollCube : MonoBehaviour
     public void SetHatAnimator(Animator hatAnimator)
     {
         this.hatAnimator = hatAnimator;
+        Debug.Log("NENASTAVUJEM HAT ANIMATOR");
     }
 
     void AnimateHat()
     {
         if (hatAnimator != null)
             hatAnimator.Play("HatJump");
-        else
-            Debug.Log("NEMAM HAT ANIMATOR");
-    }
-
+    } 
     
-
+    public void StopPlayerMovement()
+    {
+        enabled = false;
+    }
 }

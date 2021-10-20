@@ -67,7 +67,6 @@ public class AudioManager : MonoBehaviour
         else s.source.volume = 0;
 
         s.source.Play();
-        Debug.Log("hram");
 
     }
 

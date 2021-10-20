@@ -33,7 +33,8 @@ public class DoorButton : MonoBehaviour
             if (timeLeft > 0)
                 timeLeft -= Time.deltaTime;
             else
-                CloseDoor();
+                Debug.Log("CloseDoor");
+                //CloseDoor();
         }
     }
 

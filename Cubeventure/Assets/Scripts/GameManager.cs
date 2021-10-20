@@ -13,8 +13,15 @@ public class GameManager : MonoBehaviour
     [Space]
     public int coinsCount;
     [HideInInspector] public int collectedCoinsCount = 0;
+    public int enemiesKilledCount;
+
+    public int time;
+    private float gameTimeElapsed;
+
+    public int highScore;
 
     public GameObject pausePanel;
+    public GameObject endPanel;
     bool gamePaused;
 
     private void Awake()
@@ -24,13 +31,32 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        gameTimeElapsed += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gamePaused)
                 ResumeGame();
             else
                 PauseGame();
         }
+
+    }
+
+    public void CoinCollected()
+    {
+        collectedCoinsCount++;
+        InGameUIPanel.instance.UpdateCoinsCountText();
+    }
+
+    public void StarCollected()
+    {
+        collectedStarsCount++;
+        InGameUIPanel.instance.UpdateStarsCountText();
+    }
+    public void EnemyKilled()
+    {
+        enemiesKilledCount++;
     }
 
     void PauseGame()
@@ -46,6 +72,17 @@ public class GameManager : MonoBehaviour
         gamePaused = false;
     }
 
+    public void EndGame()
+    {        
+        endPanel.GetComponent<EndPanel>().SetEndPanelValues(collectedStarsCount,enemiesKilledCount,collectedCoinsCount,Mathf.RoundToInt(gameTimeElapsed),highScore);
+    }
+
+    public void NextLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void RestartGame()
     {
         Time.timeScale = 1;
@@ -56,19 +93,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
         //SceneManager.LoadScene("MainMenu");
-    }
-
-
-
-    public void CoinCollected()
-    {
-        collectedCoinsCount++;
-        InGameUIPanel.instance.UpdateCoinsCountText();
-    }
-
-    public void StarCollected()
-    {
-        collectedStarsCount++;
-        InGameUIPanel.instance.UpdateStarsCountText();
     }
 }

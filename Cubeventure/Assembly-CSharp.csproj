@@ -64,9 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Enemy.cs" />
-    <Compile Include="Assets\LaserTrigger.cs" />
+    <Compile Include="Assets\Scripts\EndPanel.cs" />
+    <Compile Include="Assets\Scripts\EndPoint.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\LaserTrigger.cs" />
     <Compile Include="Assets\Scripts\Level\Collectable.cs" />
     <Compile Include="Assets\Scripts\Level\CollectableSpawner.cs" />
     <Compile Include="Assets\Scripts\Level\DoorButton.cs" />
@@ -82,11 +84,13 @@
     <Compile Include="Assets\Scripts\MapGenerator\MapEditor.cs" />
     <Compile Include="Assets\Scripts\MapGenerator\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\MapGenerator\Utility.cs" />
+    <Compile Include="Assets\Scripts\MovableObject.cs" />
     <Compile Include="Assets\Scripts\ObjectColorEnum.cs" />
     <Compile Include="Assets\Scripts\Player\CubeColors.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHatHandler.cs" />
     <Compile Include="Assets\Scripts\Player\RollCube.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
+    <Compile Include="Assets\Scripts\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\UI\InGameUIPanel.cs" />
     <Compile Include="Assets\Scripts\UI\ShopHandler.cs" />
     <Compile Include="Assets\Scripts\UI\ShopItem.cs" />

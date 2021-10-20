@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class PlayerHatHandler : MonoBehaviour
 {
-    public GameObject player;
+    private Transform playerTransform;
 
-
-    // Update is called once per frame
-    private void Awake()
-    {
-        SpawnSelectedHat();
-    }
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, 2.25f, player.transform.position.z);
+        transform.position = new Vector3(playerTransform.position.x, 2.25f, playerTransform.position.z);
     }
 
     void SpawnSelectedHat()
@@ -24,10 +18,17 @@ public class PlayerHatHandler : MonoBehaviour
             string hatID = UserInfoHolder.instance.hatID;        
             GameObject hatGO = Resources.Load<GameObject>("Hats/" + hatID);
             GameObject spawnedHat = Instantiate(hatGO, transform.position, transform.rotation, transform);
-            player.GetComponent<RollCube>().SetHatAnimator(spawnedHat.GetComponent<Animator>());
+            playerTransform.gameObject.GetComponent<RollCube>().SetHatAnimator(spawnedHat.GetComponent<Animator>());
         }
         else
             Debug.Log("Nespawnujem HAT NEMAM ID");
+    }
+
+    public void SetPlayerTransform(Transform playerTransform)
+    {
+        this.playerTransform = playerTransform;
+        SpawnSelectedHat();
+        enabled = true;
     }
     
 }

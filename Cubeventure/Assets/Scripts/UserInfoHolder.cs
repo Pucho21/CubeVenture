@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class UserInfoHolder : MonoBehaviour
 {
+    public static UserInfoHolder instance;
     public int coins;
     private bool logged;
     public string userID { get; private set; }
     public string name;
     public string pw;
-    public static UserInfoHolder instance;
     public string hatID;
 
 
@@ -56,9 +56,10 @@ public class UserInfoHolder : MonoBehaviour
 
     //kupime item, posleme string itemu, odpocitame coins
 
-    public void SavePurchasedToDB(string itemID, int price)
+    public void CoinsUpdateDB(int price)
     {
         coins -= price;
+        StartCoroutine(Web.instance.UpdateCoins());
         //ulozit do DB ze item je kupeny
         //prepisat coins hraca v DB
     }

@@ -8,9 +8,14 @@ using System;
 
 public class Web : MonoBehaviour
 {
+    public static Web instance;
     public Text resultTextLogin;
     EventSystem system;
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,13 +44,6 @@ public class Web : MonoBehaviour
         }
     }
 
-    public void ShowUserItems()
-    {
-        StartCoroutine(GetUserCoins(UserInfoHolder.instance.userID));
-        StartCoroutine(GetItemsIDs(UserInfoHolder.instance.userID));
-
-    }
-
 //***********************************************************************************************************************************************
     public IEnumerator GetUserCoins(string userID)
     {
@@ -64,6 +62,7 @@ public class Web : MonoBehaviour
                 //Show results as text
                 Debug.Log(www.downloadHandler.text);
                 UserInfoHolder.instance.SetCoins(int.Parse(www.downloadHandler.text));
+                ShopHandler.instance.UpdateCoinsText();
 
                 //callback function  to pass result
             }
@@ -106,7 +105,7 @@ public class Web : MonoBehaviour
                     resultTextLogin.text = "Login successful";
                     UserInfoHolder.instance.SetID(www.downloadHandler.text);
                     //UserInfoHolder.instance.SetCoins(int.Parse(www.downloadHandler.text));
-                    ShowUserItems();
+                    //ShowUserItems();
                     yield return new WaitForSeconds(2);
                     UIManager.instance.introScreen();
                 }
@@ -138,12 +137,62 @@ public class Web : MonoBehaviour
             }
         }
     }
+//***********************************************************************************************************************************************
+    public IEnumerator BuyItem(string itemID)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userID", UserInfoHolder.instance.userID);
+        form.AddField("itemID", itemID);
+
+        //Debug.Log("posielam udaje: " + UserInfoHolder.instance.userID + " a " + itemID);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/cubeventure/buyitem.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                //Show results as text
+                Debug.Log(www.downloadHandler.text);
+
+            }
+        }
+    }
 
 //***********************************************************************************************************************************************
+    public IEnumerator UpdateCoins()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userID", UserInfoHolder.instance.userID);
+        form.AddField("updatedCoins", UserInfoHolder.instance.coins);
+
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/cubeventure/coinsupdate.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                //Show results as text
+                Debug.Log(www.downloadHandler.text);
+
+            }
+        }
+    }
+
+    //***********************************************************************************************************************************************
     public IEnumerator GetItemsIDs(string userID)
     {
         WWWForm form = new WWWForm();
-        form.AddField("userID", userID);
+        form.AddField("userID", UserInfoHolder.instance.userID);
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/cubeventure/getitemsids.php", form))
         {
             yield return www.Send();
@@ -157,15 +206,23 @@ public class Web : MonoBehaviour
                 //Show results as text
                 Debug.Log(www.downloadHandler.text);
                 string jsonArray = www.downloadHandler.text; 
-                Debug.Log(jsonArray);
-                for (int i = 0; i < jsonArray.Length; i++)
+
+                string pomID = "";
+                List<int> itemIDs = new List<int>();             
+                for(int i = 0; i < jsonArray.Length; i++)
                 {
-                    //if (jsonArray.Substring(i, 1))
+                    char c = Convert.ToChar(jsonArray.Substring(i, 1));
+                    if (Char.IsDigit(c))
                     {
-                        Debug.Log("dvojita uvodzovka");
+                        pomID = pomID + c;
+                    } else if(!pomID.Equals(""))
+                    {
+                        //Debug.Log("purchased itemID: " + pomID);
+                        itemIDs.Add(int.Parse(pomID));
+                        pomID = "";                
                     }
                 }
-
+                ShopHandler.instance.SetUnlockedItemsDB(itemIDs);
 
                 //callback function  to pass result
             }

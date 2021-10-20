@@ -226,7 +226,7 @@ MonoBehaviour:
   speed: 300
   collisionLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   raycastRange: 2
 --- !u!114 &2701137486166077127
 MonoBehaviour:

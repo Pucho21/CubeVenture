@@ -6,20 +6,26 @@ using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
-    public string itemID;
+    private string itemID;
     public int price;
     private bool isPurchased;
+
+    private void Awake()
+    {
+        itemID = "hat" + transform.GetSiblingIndex();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         transform.GetChild(0).GetComponent<Text>().text = price.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        //if (itemID.Equals(UserInfoHolder.instance.hatID)) SetSelected();
     }
+
 
     public void SetSelected()
     {
@@ -28,6 +34,7 @@ public class ShopItem : MonoBehaviour
         ShopHandler.instance.SetSelectedItem(this);
         isPurchased = true;
         UserInfoHolder.instance.SetHatID(itemID);
+        Debug.Log("selected " + itemID);
 
     }
 
@@ -36,6 +43,7 @@ public class ShopItem : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetComponent<Image>().sprite = ShopHandler.instance.defaultBCG;
         isPurchased = true;
+        Debug.Log("kupeny itemID " + itemID);
 
     }
 
@@ -50,7 +58,8 @@ public class ShopItem : MonoBehaviour
             if(UserInfoHolder.instance.coins >= price) //nemame love
             {
                 SetSelected();
-                UserInfoHolder.instance.SavePurchasedToDB(itemID, price);
+                UserInfoHolder.instance.CoinsUpdateDB(price);
+                StartCoroutine(Web.instance.BuyItem(transform.GetSiblingIndex().ToString()));
                 ShopHandler.instance.UpdateCoinsText();
             } else
             {
